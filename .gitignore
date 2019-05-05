@@ -1,0 +1,20 @@
+# https://github.com/github/gitignore
+*˜
+*.pyc
+*.log
+.svn
+.DS_Store
+.DS_Store?
+._*
+.idea/*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.project
+.pydevproject
+.settings/*
+videos/
+#sqlite.db
+#media/*
+#mail/*
