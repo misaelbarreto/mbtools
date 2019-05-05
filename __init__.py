@@ -31,6 +31,13 @@ def get_files(start_dir, pattern):
 # ------------
 # String Utils
 # ------------
+def describe_obj(obj, attributes_to_not_describe=[]) -> str:
+    if obj.__dict__:
+        atts = ", \n".join([u" = ".join(['\t{} ({})'.format(key, type(val)), '{}'.format(str(val))]) for key, val in
+                            obj.__dict__.items() if key not in attributes_to_not_describe])
+        return '{} (\n{}\n)'.format(obj.__class__.__name__, atts)
+    return ''
+
 def convert_text_to_decimal(text):
     text_number = text.replace('.', '').replace(',', '.')
     return Decimal(text_number)
@@ -39,7 +46,7 @@ def extract_text_numbers_from_text(text):
     return re.findall("\d+\d*[.,]?\d+", text)
 
 def extract_decimal_or_int_from_text(text):
-    text_numbers = re.findall("\d+\d*[.,]?\d+", text)
+    text_numbers = re.findall("-?\d+\d*[.,]-?\d+", text)
     decimals_or_ints = []
     for tn in text_numbers:
         tn = tn.replace('.', '').replace(',', '.')
