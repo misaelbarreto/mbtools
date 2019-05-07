@@ -18,3 +18,9 @@ videos/
 #sqlite.db
 #media/*
 #mail/*
+
+
+# Lixo gerado para o pypi
+build
+dist
+mbtools.egg-info
