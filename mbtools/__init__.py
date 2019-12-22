@@ -2,6 +2,7 @@ import re
 from decimal import Decimal
 import subprocess, os, platform
 from glob import glob
+import unicodedata
 
 # ------------------------
 # System Operational Utils
@@ -31,6 +32,10 @@ def get_files(start_dir, pattern):
 # ------------
 # String Utils
 # ------------
+def remove_accents(text) -> str:
+    text_no_accents = ''.join((c for c in unicodedata.normalize('NFD', text) if unicodedata.category(c) != 'Mn'))
+    return text_no_accents
+
 def describe_obj(obj, attributes_to_not_describe=[]) -> str:
     if obj.__dict__:
         atts = ", \n".join([u" = ".join(['\t{} ({})'.format(key, type(val)), '{}'.format(str(val))]) for key, val in
